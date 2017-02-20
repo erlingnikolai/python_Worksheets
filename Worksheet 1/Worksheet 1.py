@@ -13,9 +13,9 @@ x = 2
 y = 10
 test = "hello world!"
 
-print 2 ** 10
-print x ** y
-print "Hello World!"
+print (2 ** 10)
+print (x ** y)
+print ("Hello World!")
 print(test)
 print(np.zeros(5))
 plt.plot([1, 2, 3])
