@@ -1,5 +1,6 @@
 import requests
 import bs4
+import lxml
 import string # for string.punctuation
 import csv
 
@@ -11,7 +12,7 @@ and then not changed.
 translation = str.maketrans({p : None for p in string.punctuation})
 
 
-        
+
 
 def remove_punctuation(text):
     """
@@ -34,7 +35,7 @@ def make_words(para_text):
 # ---------------------------------------------------
 
 def request_and_soup(url):
-  
+
     response = requests.get(url)
     print(response.status_code)
     xml_text = response.text
@@ -51,13 +52,13 @@ def make_counts(wordBlocks):
     words_dict = {}
     for block in wordBlocks:
         for word in block:
-        
+
             if word in words_dict:
                 words_dict[word]+=1
             else:
                 words_dict[word] = 1
-    
-    
+
+
     # add code here 
     return words_dict
 
@@ -65,20 +66,14 @@ def make_counts(wordBlocks):
 def report_counts(freqs, infile_name, outfile_name):
     with open (outfile_name, "w", newline = '\n') as my_outfile:
         csv_out = csv.writer(my_outfile, dialect = "excel")
-        with open (infile_name, "r") as my_inputfile:         
+        with open (infile_name, "r") as my_inputfile:
             for line in my_inputfile:
                 removeEnter = line.rstrip()
                 if removeEnter in freqs:
                     csv_out.writerow([removeEnter, freqs[removeEnter]])
-            #    for word in freqs:
-             #       if (removeEnter == word):
-              #          print(removeEnter)
-               #         print(word)
-                #        csv_out.writerow([removeEnter, freqs[word]])
 
 
-    
-    
+
 
 
 def main():
